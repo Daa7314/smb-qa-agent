@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>August Occasions - Admin</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231d4ed8'/%3E%3Cpath d='M6 8h12M6 12h8' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --color-bg: #f4f5f7;
+      --color-surface: #ffffff;
+      --color-primary: #1d4ed8;
+      --color-primary-hover: #1e40af;
+      --color-text: #1a1a1a;
+      --color-text-muted: #4b5563;
+      --color-border: #e2e4e9;
+      --color-error: #b91c1c;
+      --color-error-bg: #fdecea;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --space-2: 0.75rem;
+      --space-3: 1rem;
+      --space-4: 1.5rem;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      background: var(--color-bg);
+      color: var(--color-text);
+      padding: var(--space-3);
+    }
+    .app { max-width: 800px; margin: 0 auto; }
+    header.app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-2) 0 var(--space-4);
+    }
+    header.app-header h1 { font-size: 1.25rem; margin: 0; }
+
+    #gate, #dashboard { display: none; }
+    #gate.active, #dashboard.active { display: block; }
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+    }
+    #gate .card { max-width: 420px; margin: 3rem auto; }
+    #gate .lead { margin: 0 0 var(--space-3); color: var(--color-text-muted); }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px; height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    form { display: flex; gap: var(--space-2); }
+    input[type=text] {
+      flex: 1;
+      min-height: 44px;
+      padding: 0 var(--space-3);
+      font-size: 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+    }
+    button {
+      min-height: 44px;
+      padding: 0 var(--space-4);
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-md);
+      background: var(--color-primary);
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover { background: var(--color-primary-hover); }
+    button.ghost {
+      background: transparent;
+      color: var(--color-text-muted);
+      border: 1px solid var(--color-border);
+      font-weight: 500;
+      min-height: 36px;
+      padding: 0 var(--space-3);
+    }
+
+    .msg.error {
+      background: var(--color-error-bg);
+      color: var(--color-error);
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+    }
+
+    #session-list {
+      list-style: none;
+      margin: 0 0 var(--space-4);
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    #session-list li button {
+      width: 100%;
+      text-align: left;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      font-weight: 500;
+    }
+    #session-list li button:hover { background: var(--color-bg); }
+
+    #detail {
+      white-space: pre-wrap;
+      font-family: ui-monospace, monospace;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      max-height: 60vh;
+      overflow-y: auto;
+      padding: var(--space-3);
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>August Occasions - Admin</h1>
+      <button type="button" id="logout-btn" class="ghost" style="display:none;">Log out</button>
+    </header>
+
+    <section id="gate" class="active">
+      <div class="card">
+        <p class="lead">Enter the admin code to view client conversations.</p>
+        <form id="gate-form">
+          <label class="visually-hidden" for="admin-code-input">Admin code</label>
+          <input type="text" id="admin-code-input" autocomplete="off" placeholder="Admin code" required />
+          <button type="submit">Enter</button>
+        </form>
+        <p id="gate-error" class="msg error" role="alert"></p>
+      </div>
+    </section>
+
+    <section id="dashboard">
+      <div class="card" id="list-card">
+        <p id="empty-note" class="lead" style="display:none;">No client sessions yet.</p>
+        <ul id="session-list"></ul>
+      </div>
+      <div class="card" id="detail-card" style="display:none; margin-top: 1rem;">
+        <button type="button" id="close-detail" class="ghost" style="margin-bottom: 0.75rem;">&larr; Back to list</button>
+        <div id="detail"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/admin.js"></script>
+</body>
+</html>

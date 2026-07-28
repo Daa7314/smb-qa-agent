@@ -50,11 +50,21 @@ Budget ceiling: **$20/month**, owner-set 2026-07-27. Enforced by, in order:
 
 Layer 1 is done. Layers 2 and 3 are the owner's action — code limits alone are not sufficient per the cost-control standard.
 
-## Client-facing handoff (decisions/003)
+## Client-facing handoff (decisions/003, 006)
 Every finished chat session (client clicks "End chat," idle-times-out, or hits its message cap)
 writes one file to `client-chats/` (gitignored — see `ops/data.md` for what's in there and why):
-a short summary for the business owner (what the client wanted, any doc gaps the assistant
-couldn't answer from, whether they seemed ready to book/be contacted) plus the full raw transcript.
+a labeled summary (EVENT DETAILS, SERVICES DISCUSSED, CONTACT INFO, CONTENT GAPS, READINESS)
+plus the full raw transcript. If email is configured (see below), the same content is also
+emailed to the owner. Either way, the owner can read past sessions via the admin dashboard
+at `/admin.html` (own `ADMIN_CODE`, separate from the client's `ACCESS_CODE`) — no shell or
+file-system access needed.
+
+### Handoff email (decisions/006) — optional
+Set `GMAIL_USER`, `GMAIL_APP_PASSWORD`, and `OWNER_EMAIL` to enable. **Use a dedicated Gmail
+account created only for this app — never a personal inbox.** A Gmail App Password is not
+scoped to send-only (Google accepts it for SMTP, IMAP, and POP alike), so if it ever leaked,
+a dedicated account with no real history behind it is the actual protection, not the code.
+Leave any of the three blank to disable — handoffs still write to disk as before.
 
 ## Constraints
 - Single tenant, single vertical for this test — see decisions/001. Not multi-tenant yet.
