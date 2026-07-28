@@ -78,10 +78,13 @@ async function finalizeSession(sessionId, session, reason) {
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 300,
       system:
-        'Summarize this client chat for the business owner in under 120 words. Cover: what the client ' +
-        'wanted, any questions the assistant could not answer from the business docs (flag these clearly ' +
-        'as gaps to fill in the docs), and whether the client seemed ready to book or be contacted directly. ' +
-        'Plain text, no markdown headers.',
+        'Summarize this client chat for the business owner as short labeled lines, under 150 words total, ' +
+        'plain text, no markdown headers. Cover: EVENT DETAILS (occasion type, guest count, date, venue, ' +
+        'drink preferences - whatever was mentioned, or "not discussed"), SERVICES DISCUSSED (what was ' +
+        'recommended or asked about), CONTACT INFO (phone or email the client provided - if none was ' +
+        'given, write exactly "not provided - unable to follow up with a quotation"), CONTENT GAPS (any ' +
+        'question the assistant could not answer from the business docs, flagged for the owner to fill in), ' +
+        'and READINESS (does the client seem ready to move forward).',
       messages: [{ role: 'user', content: transcriptText }],
     });
     summary = response.content
@@ -200,9 +203,16 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
           type: 'text',
           text:
             'You are a helpful assistant answering questions about this business, grounded ONLY in the ' +
-            'reference material below. If the answer is not in the material, say you don\'t have that ' +
-            'information and suggest the person contact the business directly - never guess or invent ' +
-            'prices, policies, or availability.\n\n---\n' + businessDocs,
+            'reference material below. Your primary goal is to understand the client\'s event (occasion ' +
+            'type, guest count, date, venue, drink preferences) and recommend relevant services from the ' +
+            'material. Do not attempt to calculate or quote exact prices - pricing depends on current ' +
+            'market rates and is prepared by the team directly, not by you. Once the client\'s event ' +
+            'details are clear and they seem engaged, ask for their preferred phone number or email so a ' +
+            'team member can follow up with a detailed quotation - a quotation cannot be delivered without ' +
+            'this. Ask once, naturally, don\'t be pushy about it, and keep helping either way. If the ' +
+            'answer to something isn\'t in the material below, say you don\'t have that information and ' +
+            'suggest the person contact the business directly - never guess or invent prices, policies, ' +
+            'or availability.\n\n---\n' + businessDocs,
           cache_control: { type: 'ephemeral' },
         },
       ],

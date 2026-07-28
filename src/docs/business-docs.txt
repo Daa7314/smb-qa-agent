@@ -1,26 +1,65 @@
 August_O - Services and Pricing
 
-REPLACE_WITH_ACTUAL_CONTENT: paste the POC partner's real pricelist, service
-descriptions, policies (booking, cancellation, hours), and any other
-client-facing reference material here as plain text.
+August Occasions TERMS & CONDITIONS
+1. Prices quoted are as at today and is liable to CHANGE WITHOUT PRIOR NOTICE due to the
+fluctuating market prices.
+2. The quotation is VALID FOR 2 DAYS ONLY, prices must be reviewed before payment is made.
+3. Upon acceptance of offer, commitment fees of 90% must be made while the balance is paid on or before the day of the event.
+4. FULL PAYMENT must be made on or before the day of the event.
+5. Cancellation after payment has been made will attract 20% surcharge.
 
-Keep it factual and complete - the assistant is instructed to answer ONLY from
-this file and to say "I don't have that information" rather than guess, so
-anything a client might reasonably ask needs to be in here.
+Value Proposition and List of Services
+1. Signature Cocktail Services
+Professionally crafted alcoholic cocktails tailored to suit every event theme and guest preference.
+
+2. Premium Mocktail Services
+Refreshing, colourful, alcohol-free drinks suitable for children, families, religious gatherings, and corporate functions
+
+3. Frozen Cocktails & Mocktails
+Delicious frozen beverages prepared fresh to keep guests refreshed throughout your event.
+
+4. Signature Drinks
+Customized drinks designed exclusively for weddings, birthdays, corporate events, and themed celebrations.
+
+5. Welcome Drinks beautifully presented drinks served to welcome guests as they arrive, creating an elegant first impression.
+
+6. Cocktail Bar Setup Stylish and professionally designed mobile cocktail bars that complement your event décor. Cocktail & Mocktail Table Styling Elegant beverage display stations with creative presentation, suitable for events with a minimum order requirement.
+
+7. Professional Waiters Well-trained event staff dedicated to serving guests professionally and ensuring a smooth beverage service.
+
+8. Event Beverage Management
+Complete planning, preparation, service, and coordination of drinks throughout your event.
+
+9. Mobile bar service: A luxury bar stationed at your event with premium drinks for your after parties.
+
+10. Drinks in Pouches
+Conveniently packaged cocktails and mocktails for takeaways, souvenirs, parties, and special celebrations.
+
+11. Logistics & Event Support Reliable transportation, setup, service coordination, and post-event cleanup to ensure a stress-free experience.
+
+Why Choose August Occasions?
+- Over 15 years of industry experience
+- Professional and courteous service team
+- Premium-quality ingredients
+- Beautiful drink presentation
+- Creative and customizable drink menus
+- Reliable and punctual service
+- Suitable for intimate gatherings and large-scale events
+- Competitive pricing with excellent value
+- Customer satisfaction is our priority
 
 ---
 
 Example Q&A (real question patterns from the concierge test)
 
-REPLACE_WITH_EXAMPLE_QA: add sanitized example question/answer pairs here,
-one per pair, in the form:
+Q: Is this August Occasions?
+A: Yes, this is August Occasions, your premium drinks and cocktail service provider. How may we assist you today?
 
-Q: [a real question pattern clients have asked]
-A: [the correct answer]
+Q: I'm planning a big event and I'd like to make enquiries about your drinks service.
+A: We'd be delighted to be part of your event. Could you please share the date, venue, and expected number of guests?
 
-Before adding anything here: strip names, phone numbers, emails, or any other
-detail that could identify a specific client (see ops/data.md and decisions/003
-for why - this section gets sent as context for every client's conversation,
-so anything identifying in here could leak between clients). Generalize the
-question if needed (e.g. "Do you offer weekend appointments?" rather than
-quoting a specific client's exact wording if that wording itself is identifying).
+Q: I'm expecting a large number of guests (around 1,000) - can you handle an event that size?
+A: Yes, we have extensive experience catering for large events and can comfortably serve that many guests with a professional team and well-equipped cocktail bars. We'll also ask whether it's a wedding, birthday, corporate event, or another occasion, and whether you'd like alcoholic drinks, non-alcoholic drinks, or both.
+
+Q: How do you charge / can you send me a quotation?
+A: Pricing depends on your preferred drinks menu and service package. To prepare an accurate quotation, we need: preferred drink selections, whether every guest gets both cocktails and mocktails or just one serving, event location, and duration of service. Once we have these details, we send a detailed quotation with a cost breakdown - quotations are valid for 2 days only (see Terms & Conditions above).

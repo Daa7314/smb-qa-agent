@@ -8,7 +8,7 @@ inventory and retention discipline still does).
 
 | What | Where | Personal data? | Why it's needed | Retention | How it's deleted |
 |---|---|---|---|---|---|
-| Chat transcripts + LLM-generated summaries (decisions/003) | `client-chats/*.md` on the server's local disk | Possibly — a client may volunteer a name, phone number, or email in free text, even though the assistant never asks for one | Lets the business owner follow up with the client and see gaps in the docs | Duration of the Phase 0 test (6-8 weeks) | Manual file deletion by the owner; no automated tooling in this round |
+| Chat transcripts + LLM-generated summaries (decisions/003, revised by 005) | `client-chats/*.md` on the server's local disk | Yes, intentionally as of decisions/005 — the assistant now asks for a phone number or email so the owner can deliver a quotation; a client may also volunteer other personal info in free text | Lets the business owner follow up with the client, deliver a quotation, and see gaps in the docs | Duration of the Phase 0 test (6-8 weeks) | Manual file deletion by the owner; no automated tooling in this round |
 | Usage log (request counts, session prefixes, cap hits) | `usage.log` on the server's local disk | No — session IDs are truncated, no message content | Cost/abuse visibility during the test | Duration of the test | Manual file deletion |
 | Business docs (pricelist/services) | `src/docs/business-docs.txt` | No — business's own public-facing content | Grounds the assistant's answers | Indefinite while the prototype runs | Manual edit/delete |
 
