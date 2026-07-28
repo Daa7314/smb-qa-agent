@@ -137,6 +137,7 @@ async function finalizeSession(sessionId, session, reason) {
       await mailer.sendMail({
         from: process.env.GMAIL_USER,
         to: process.env.OWNER_EMAIL,
+        cc: process.env.NOTIFY_CC_EMAIL || undefined,
         subject: `New client inquiry - August Occasions (${todayKey()})`,
         text: `${summary}\n\n${'-'.repeat(40)}\n\nFULL CHAT LOG\n\n${transcriptText}`,
       });
@@ -346,6 +347,6 @@ app.listen(PORT, () => {
   console.log(`SMB Q&A Agent prototype listening on http://localhost:${PORT}`);
   console.log(`Daily request cap: ${DAILY_REQUEST_CAP} | Session message cap: ${SESSION_MESSAGE_CAP} | Idle timeout: ${SESSION_IDLE_TIMEOUT_MS / 60000}min`);
   console.log(`Client chat handoffs written to: ${CLIENT_CHATS_DIR}`);
-  console.log(`Handoff email notifications: ${EMAIL_ENABLED ? 'enabled -> ' + process.env.OWNER_EMAIL : 'disabled (GMAIL_USER/GMAIL_APP_PASSWORD/OWNER_EMAIL not fully set)'}`);
+  console.log(`Handoff email notifications: ${EMAIL_ENABLED ? 'enabled -> ' + process.env.OWNER_EMAIL + (process.env.NOTIFY_CC_EMAIL ? ' (cc: ' + process.env.NOTIFY_CC_EMAIL + ')' : '') : 'disabled (GMAIL_USER/GMAIL_APP_PASSWORD/OWNER_EMAIL not fully set)'}`);
   console.log(`Admin dashboard: ${process.env.ADMIN_CODE ? 'enabled at /admin.html' : 'disabled (ADMIN_CODE not set)'}`);
 });
