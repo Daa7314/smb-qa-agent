@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>REPLACE_WITH_BUSINESS_NAME - Ask us anything</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; padding: 0 1rem; }
+    #gate, #chat { display: none; }
+    #gate.active, #chat.active { display: block; }
+    #log { border: 1px solid #ccc; border-radius: 8px; padding: 1rem; height: 60vh; overflow-y: auto; margin-bottom: 1rem; }
+    .msg { margin-bottom: 0.75rem; white-space: pre-wrap; }
+    .msg.user { text-align: right; color: #1a4; }
+    .msg.assistant { text-align: left; color: #222; }
+    .msg.error { color: #b00; font-style: italic; }
+    form { display: flex; gap: 0.5rem; }
+    input[type=text] { flex: 1; padding: 0.5rem; font-size: 1rem; }
+    button { padding: 0.5rem 1rem; font-size: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>REPLACE_WITH_BUSINESS_NAME</h1>
+
+  <section id="gate" class="active">
+    <p>Enter the access code you were given to start chatting.</p>
+    <form id="gate-form">
+      <input type="text" id="code-input" autocomplete="off" placeholder="Access code" required />
+      <button type="submit">Start</button>
+    </form>
+    <p id="gate-error" class="msg error"></p>
+  </section>
+
+  <section id="chat">
+    <div id="log"></div>
+    <form id="chat-form">
+      <input type="text" id="message-input" autocomplete="off" placeholder="Ask a question..." maxlength="2000" required />
+      <button type="submit">Send</button>
+    </form>
+    <p><button type="button" id="end-chat">End chat</button></p>
+  </section>
+
+  <script src="/chat.js"></script>
+</body>
+</html>

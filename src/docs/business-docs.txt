@@ -1,0 +1,9 @@
+REPLACE_WITH_BUSINESS_NAME - Services and Pricing
+
+REPLACE_WITH_ACTUAL_CONTENT: paste the POC partner's real pricelist, service
+descriptions, policies (booking, cancellation, hours), and any other
+client-facing reference material here as plain text.
+
+Keep it factual and complete - the assistant is instructed to answer ONLY from
+this file and to say "I don't have that information" rather than guess, so
+anything a client might reasonably ask needs to be in here.
