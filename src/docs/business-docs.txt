@@ -1,4 +1,4 @@
-REPLACE_WITH_BUSINESS_NAME - Services and Pricing
+August_O - Services and Pricing
 
 REPLACE_WITH_ACTUAL_CONTENT: paste the POC partner's real pricelist, service
 descriptions, policies (booking, cancellation, hours), and any other
@@ -7,3 +7,20 @@ client-facing reference material here as plain text.
 Keep it factual and complete - the assistant is instructed to answer ONLY from
 this file and to say "I don't have that information" rather than guess, so
 anything a client might reasonably ask needs to be in here.
+
+---
+
+Example Q&A (real question patterns from the concierge test)
+
+REPLACE_WITH_EXAMPLE_QA: add sanitized example question/answer pairs here,
+one per pair, in the form:
+
+Q: [a real question pattern clients have asked]
+A: [the correct answer]
+
+Before adding anything here: strip names, phone numbers, emails, or any other
+detail that could identify a specific client (see ops/data.md and decisions/003
+for why - this section gets sent as context for every client's conversation,
+so anything identifying in here could leak between clients). Generalize the
+question if needed (e.g. "Do you offer weekend appointments?" rather than
+quoting a specific client's exact wording if that wording itself is identifying).

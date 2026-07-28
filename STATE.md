@@ -4,7 +4,7 @@
 **Size/tier:** not yet confirmed — pending Phase 1 (likely Tier 2: backend, auth, database, multi-tenant, LLM calls)
 **Current phase:** Phase 0 — Validate
 **Phase started:** 2026-07-27
-**Last session:** sessions/2026-07-27-a.md
+**Last session:** sessions/2026-07-28-a.md
 
 ## Gate status
 - [ ] Phase 0 — Validate — handoff: —
@@ -14,6 +14,9 @@
 - [ ] Phase 4 — Verify — handoff: —
 - [ ] Phase 5 — Ship — handoff: —
 - [ ] Phase 6 — Operate — handoff: —
+
+## Outstanding — for later, not blocking right now
+- Owner requested a full repo vulnerability check + cleanup recommendations, deferred until later (2026-07-28). When picked up: load `3-backend-security` (this app has an auth gate, API endpoints, and secrets) plus the `security-review` skill for the actual scan. Repo now exists at github.com/Daa7314/smb-qa-agent (private) with `main`/`dev` branches, first review can run directly against it.
 
 ## Currently blocked on
 - Owner running the Phase 0 test (decisions/001): concierge Q&A test with the committed POC partner's real clients, in parallel with the prototype below. 6-8 week window. Results not yet in.

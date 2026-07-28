@@ -19,6 +19,21 @@ function appendMessage(role, text) {
   log.scrollTop = log.scrollHeight;
 }
 
+function showTyping() {
+  const div = document.createElement('div');
+  div.className = 'typing';
+  div.id = 'typing-indicator';
+  div.setAttribute('aria-label', 'Assistant is typing');
+  for (let i = 0; i < 3; i++) div.appendChild(document.createElement('span'));
+  log.appendChild(div);
+  log.scrollTop = log.scrollHeight;
+}
+
+function hideTyping() {
+  const el = document.getElementById('typing-indicator');
+  if (el) el.remove();
+}
+
 gateForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   gateError.textContent = '';
@@ -48,6 +63,7 @@ chatForm.addEventListener('submit', async (e) => {
   appendMessage('user', text);
   messageInput.value = '';
   messageInput.disabled = true;
+  showTyping();
 
   try {
     const res = await fetch('/api/chat', {
@@ -56,6 +72,7 @@ chatForm.addEventListener('submit', async (e) => {
       body: JSON.stringify({ message: text }),
     });
     const data = await res.json();
+    hideTyping();
     if (!res.ok) {
       appendMessage('error', data.error || 'Something went wrong.');
       if (res.status === 440) {
@@ -66,6 +83,7 @@ chatForm.addEventListener('submit', async (e) => {
       appendMessage('assistant', data.reply);
     }
   } catch (err) {
+    hideTyping();
     appendMessage('error', 'Could not reach the server. Please try again.');
   } finally {
     messageInput.disabled = false;
