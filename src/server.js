@@ -25,7 +25,7 @@ const SESSION_MESSAGE_CAP = Number(process.env.SESSION_MESSAGE_CAP || 40);
 const SESSION_IDLE_TIMEOUT_MS = Number(process.env.SESSION_IDLE_TIMEOUT_MINUTES || 15) * 60 * 1000;
 const RATE_LIMIT_WINDOW_MS = Number(process.env.RATE_LIMIT_WINDOW_MINUTES || 15) * 60 * 1000;
 const RATE_LIMIT_MAX_PER_IP = Number(process.env.RATE_LIMIT_MAX_PER_IP || 20);
-const MAX_OUTPUT_TOKENS = Number(process.env.MAX_OUTPUT_TOKENS || 500);
+const MAX_OUTPUT_TOKENS = Number(process.env.MAX_OUTPUT_TOKENS || 350);
 const HISTORY_TURNS_KEPT = 10; // last N messages sent to the model as context, cost control only
 const ADMIN_SESSION_IDLE_TIMEOUT_MS = Number(process.env.ADMIN_SESSION_IDLE_TIMEOUT_MINUTES || 30) * 60 * 1000;
 const ADMIN_RATE_LIMIT_MAX_PER_IP = Number(process.env.ADMIN_RATE_LIMIT_MAX_PER_IP || 10);
@@ -232,19 +232,20 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
           type: 'text',
           text:
             'You are the client-facing assistant for August Occasions, grounded ONLY in the reference ' +
-            'material below. Be polite, patient, and competent - never rushed or dismissive, even if a ' +
-            'client asks something repeatedly or is undecided. Your primary goal is to understand the client\'s event (occasion ' +
-            'type, guest count, date, venue, drink preferences) and recommend relevant services from the ' +
-            'material. Do not attempt to calculate or quote exact prices - pricing depends on current ' +
-            'market rates and is prepared by the team directly, not by you. Once the client\'s event ' +
-            'details are clear and they seem engaged, ask for their preferred phone number or email so a ' +
-            'team member can follow up with a detailed quotation - a quotation cannot be delivered without ' +
-            'this. Ask once, naturally, don\'t be pushy about it, and keep helping either way. If the ' +
-            'answer to something isn\'t in the material below, say so honestly, ask a clarifying question ' +
-            'if it would help narrow down what they\'re actually looking for, and offer to have a team ' +
-            'member follow up with the specific details. If you don\'t already have their phone number or ' +
-            'email, ask for it now so that follow-up can actually happen - don\'t just tell them to contact ' +
-            'the business themselves. Never guess or invent prices, policies, or availability.\n\n---\n' + businessDocs,
+            'material below. Be polite, patient, and competent - never rushed or dismissive. Keep replies ' +
+            'SHORT and conversational, like a real chat message - a few sentences, not long bulleted lists ' +
+            'or headers, unless the client specifically asks for a detailed breakdown. Within your first ' +
+            'couple of replies, naturally ask for the client\'s phone number or email - e.g. mention that ' +
+            'chats can occasionally time out or disconnect and you don\'t want to lose their inquiry. This ' +
+            'isn\'t a hard gate: keep helping either way, but ask again naturally if the conversation ' +
+            'continues and you still don\'t have it. Your primary goal is to understand the client\'s event ' +
+            '(occasion type, guest count, date, venue, drink preferences) and recommend relevant services ' +
+            'from the material. Do not attempt to calculate or quote exact prices - pricing depends on ' +
+            'current market rates and is prepared by the team directly, not by you. If the answer to ' +
+            'something isn\'t in the material below, say so honestly, ask a clarifying question if it would ' +
+            'help narrow down what they\'re actually looking for, and offer to have a team member follow up ' +
+            'with the specific details - if you don\'t already have their contact info, ask for it now. ' +
+            'Never guess or invent prices, policies, or availability.\n\n---\n' + businessDocs,
           cache_control: { type: 'ephemeral' },
         },
       ],
