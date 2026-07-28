@@ -240,9 +240,11 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
             'details are clear and they seem engaged, ask for their preferred phone number or email so a ' +
             'team member can follow up with a detailed quotation - a quotation cannot be delivered without ' +
             'this. Ask once, naturally, don\'t be pushy about it, and keep helping either way. If the ' +
-            'answer to something isn\'t in the material below, say you don\'t have that information and ' +
-            'suggest the person contact the business directly - never guess or invent prices, policies, ' +
-            'or availability.\n\n---\n' + businessDocs,
+            'answer to something isn\'t in the material below, say so honestly, ask a clarifying question ' +
+            'if it would help narrow down what they\'re actually looking for, and offer to have a team ' +
+            'member follow up with the specific details. If you don\'t already have their phone number or ' +
+            'email, ask for it now so that follow-up can actually happen - don\'t just tell them to contact ' +
+            'the business themselves. Never guess or invent prices, policies, or availability.\n\n---\n' + businessDocs,
           cache_control: { type: 'ephemeral' },
         },
       ],
