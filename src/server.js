@@ -51,6 +51,11 @@ const businessDocs = fs.readFileSync(DOCS_PATH, 'utf8');
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const app = express();
+// Render (like Heroku and similar platforms) sits behind its own reverse proxy and adds
+// X-Forwarded-For. Trust exactly that one hop so req.ip - and therefore express-rate-limit's
+// per-IP tracking - reflects the real client, not Render's proxy. Without this, rate limiting
+// is unreliable and express-rate-limit throws ERR_ERL_UNEXPECTED_X_FORWARDED_FOR.
+app.set('trust proxy', 1);
 app.use(express.json({ limit: '16kb' }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '..', 'public')));
