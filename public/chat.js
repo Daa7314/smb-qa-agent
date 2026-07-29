@@ -10,6 +10,33 @@ const chatForm = document.getElementById('chat-form');
 const messageInput = document.getElementById('message-input');
 const endChatButton = document.getElementById('end-chat');
 const log = document.getElementById('log');
+const starterChips = document.getElementById('starter-chips');
+
+const STARTER_QUESTIONS = [
+  'What services do you offer?',
+  "I'm planning a wedding - can you help?",
+  'Do you have wine or soft drinks?',
+  'How does pricing work?',
+];
+
+function renderStarterChips() {
+  starterChips.replaceChildren();
+  for (const question of STARTER_QUESTIONS) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'chip';
+    btn.textContent = question; // textContent only - hardcoded starter text, not user/model content
+    btn.addEventListener('click', () => {
+      messageInput.value = question;
+      chatForm.requestSubmit();
+    });
+    starterChips.appendChild(btn);
+  }
+}
+
+function clearStarterChips() {
+  starterChips.replaceChildren();
+}
 
 function appendMessage(role, text) {
   const div = document.createElement('div');
@@ -51,6 +78,7 @@ gateForm.addEventListener('submit', async (e) => {
     gateSection.classList.remove('active');
     chatSection.classList.add('active');
     appendMessage('assistant', 'Hi! Ask me anything about our services and pricing.');
+    renderStarterChips();
   } catch (err) {
     gateError.textContent = 'Could not reach the server. Please try again.';
   }
@@ -60,6 +88,7 @@ chatForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const text = messageInput.value.trim();
   if (!text) return;
+  clearStarterChips();
   appendMessage('user', text);
   messageInput.value = '';
   messageInput.disabled = true;
@@ -100,7 +129,8 @@ endChatButton.addEventListener('click', async () => {
   }
   chatSection.classList.remove('active');
   gateSection.classList.add('active');
-  log.innerHTML = '';
+  log.replaceChildren();
+  clearStarterChips();
   codeInput.value = '';
   gateError.textContent = '';
   endChatButton.disabled = false;
