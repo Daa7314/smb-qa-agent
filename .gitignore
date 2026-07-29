@@ -3,3 +3,8 @@ node_modules/
 usage.log
 client-chats/
 .DS_Store
+
+# Reference images (pricing/invoice/questionnaire) - not read by the app, kept local only.
+# See STATE.md standing notes and decisions/006 for context.
+src/docs/*.jpg
+src/docs/*.png
